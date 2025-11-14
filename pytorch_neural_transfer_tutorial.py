@@ -12,10 +12,11 @@ from torchvision.models import vgg19, VGG19_Weights
 import copy
 
 
-style_img_path = "./data/images/picasso.jpg"
+style_img_path = "./data/images/vangogh_starry2.jpg"
 content_img_path = "./data/images/dancing.jpg"
 style_adjust = 1
 content_adjust = 1
+total_steps = 500
 
 
 ############# Classes #####################
@@ -267,7 +268,7 @@ input_img = content_img.clone()
 #
 # .. code-block:: python
 #
-#    input_img = torch.randn(content_img.data.size())
+# input_img = torch.randn(content_img.data.size())
 
 # add the original input image to the figure:
 plt.figure()
@@ -275,7 +276,7 @@ imshow(input_img, title='Input Image')
 
 
 output = run_style_transfer(cnn, cnn_normalization_mean, cnn_normalization_std,
-                            content_img, style_img, input_img)
+                            content_img, style_img, input_img, num_steps=total_steps)
 
 plt.figure()
 imshow(output, title='Output Image')
