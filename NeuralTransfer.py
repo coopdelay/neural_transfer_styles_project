@@ -19,11 +19,12 @@ content_img_path = "./data/images/straw_cat.jpg"
 style_adjust = 1 #1
 content_adjust = 1 #1
 total_steps = 500 #500
-use_noise = False #False
+use_noise = True #False
 content_layers_default = ['conv_4'] # desired depth layers to compute content losses
 style_layers_default = ['conv_1', 'conv_2', 'conv_3', 'conv_4', 'conv_5'] # desired depth layers to compute style losses
-avg_pool = False #False
+avg_pool = True #False
 use_SGD_optimizer = False #False
+use_ADAM_optimizer = False #False
 
 
 ############# Classes #####################
@@ -140,6 +141,8 @@ def gram_matrix(input):
 def get_input_optimizer(input_img):
     if(use_SGD_optimizer):
         optimizer = optim.SGD([input_img], lr=.001)
+    elif(use_ADAM_optimizer):
+        optimizer = optim.Adam([input_img])
     else:
         optimizer = optim.LBFGS([input_img])
     
